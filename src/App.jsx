@@ -1,7 +1,13 @@
-import './App.css'
+import "./App.css";
+import Post from "./components/Post";
 
 function App() {
-  return <h1>Hello World!</h1>
+  return (
+    <main>
+      <Post author="Tyler" body="React.js is awesome!" />
+      <Post author="Alex" body="React.js is my favorite library!" />
+    </main>
+  );
 }
 
-export default App
+export default App;
