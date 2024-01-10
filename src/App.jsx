@@ -1,11 +1,21 @@
 import "./App.css";
-import Post from "./components/Post";
+import { useState } from "react";
+import PostsList from "./components/PostsList";
 
 function App() {
+  const [postList, setPostList] = useState([
+    {
+      author: "Tyler",
+      body: "React.js is the best!",
+    },
+    {
+      author: "Alex",
+      body: "This React.js course is a life save!",
+    },
+  ]);
   return (
     <main>
-      <Post author="Tyler" body="React.js is awesome!" />
-      <Post author="Alex" body="React.js is my favorite library!" />
+      <PostsList postList={postList} setPostList={setPostList} />
     </main>
   );
 }
