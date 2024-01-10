@@ -6,18 +6,12 @@ import { useState } from "react";
 function App() {
   const [modalVisability, setModalVisability] = useState(false);
 
-  // const modalToggle = () => {
-  //   console.log(modalVisability);
-  //   setModalVisability(!modalVisability);
-  // };
-  console.log(modalVisability);
-
   const showModalHandler = () => {
     setModalVisability(true);
   };
 
   const hideModalHandler = (e) => {
-    e.stopPropagation();
+    e.preventDefault();
     setModalVisability(false);
   };
 

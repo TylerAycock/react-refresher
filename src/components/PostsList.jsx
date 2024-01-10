@@ -30,7 +30,14 @@ const PostsList = ({ modalVisability, modalToggle }) => {
       {modalContent}
       <ul className={classes.post__list}>
         {postList.map((post, index) => {
-          return <Post author={post.author} body={post.body} key={index} />;
+          return (
+            <Post
+              author={post.author}
+              body={post.body}
+              key={index}
+              onClose={modalToggle}
+            />
+          );
         })}
       </ul>
     </>
