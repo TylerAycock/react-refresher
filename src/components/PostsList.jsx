@@ -1,13 +1,35 @@
 import NewPost from "./NewPost";
 import Post from "./Post";
 import classes from "./PostsList.module.css";
+import Modal from "./Modal";
+import { useState } from "react";
 
-const PostsList = (props) => {
+const PostsList = ({ modalVisability, modalToggle }) => {
+  const [postList, setPostList] = useState([
+    {
+      author: "Tyler",
+      body: "React.js is the best!",
+    },
+    {
+      author: "Alex",
+      body: "This React.js course is a life save!",
+    },
+  ]);
+
+  let modalContent;
+
+  if (modalVisability) {
+    modalContent = (
+      <Modal onClose={modalToggle}>
+        <NewPost postList={postList} setPostList={setPostList} />
+      </Modal>
+    );
+  }
   return (
     <>
-      <NewPost postList={props.postList} setPostList={props.setPostList} />
+      {modalContent}
       <ul className={classes.post__list}>
-        {props.postList.map((post, index) => {
+        {postList.map((post, index) => {
           return <Post author={post.author} body={post.body} key={index} />;
         })}
       </ul>

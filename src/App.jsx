@@ -1,22 +1,36 @@
 import "./App.css";
-import { useState } from "react";
 import PostsList from "./components/PostsList";
+import MainHeader from "./components/header/MainHeader";
+import { useState } from "react";
 
 function App() {
-  const [postList, setPostList] = useState([
-    {
-      author: "Tyler",
-      body: "React.js is the best!",
-    },
-    {
-      author: "Alex",
-      body: "This React.js course is a life save!",
-    },
-  ]);
+  const [modalVisability, setModalVisability] = useState(false);
+
+  // const modalToggle = () => {
+  //   console.log(modalVisability);
+  //   setModalVisability(!modalVisability);
+  // };
+  console.log(modalVisability);
+
+  const showModalHandler = () => {
+    setModalVisability(true);
+  };
+
+  const hideModalHandler = (e) => {
+    e.stopPropagation();
+    setModalVisability(false);
+  };
+
   return (
-    <main>
-      <PostsList postList={postList} setPostList={setPostList} />
-    </main>
+    <>
+      <MainHeader modalToggle={showModalHandler} />
+      <main>
+        <PostsList
+          modalVisability={modalVisability}
+          modalToggle={hideModalHandler}
+        />
+      </main>
+    </>
   );
 }
 
