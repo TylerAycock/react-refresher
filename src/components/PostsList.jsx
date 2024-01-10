@@ -21,7 +21,11 @@ const PostsList = ({ modalVisability, modalToggle }) => {
   if (modalVisability) {
     modalContent = (
       <Modal onClose={modalToggle}>
-        <NewPost postList={postList} setPostList={setPostList} />
+        <NewPost
+          postList={postList}
+          setPostList={setPostList}
+          onCancel={modalToggle}
+        />
       </Modal>
     );
   }
@@ -35,7 +39,7 @@ const PostsList = ({ modalVisability, modalToggle }) => {
               author={post.author}
               body={post.body}
               key={index}
-              onClose={modalToggle}
+              onCancel={modalToggle}
             />
           );
         })}

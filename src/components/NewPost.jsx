@@ -1,7 +1,7 @@
 import classes from "./NewPost.module.css";
 import { useState } from "react";
 
-const NewPost = ({ postList, setPostList }) => {
+const NewPost = ({ postList, setPostList, onCancel }) => {
   const [author, setAuthor] = useState("");
   const [body, setBody] = useState("");
 
@@ -14,7 +14,11 @@ const NewPost = ({ postList, setPostList }) => {
         body: body,
       },
     ]);
-    console.log(postList);
+    // console.log(postList);
+  };
+
+  const clickHandler = () => {
+    console.log("cancelbutton");
   };
 
   return (
@@ -37,10 +41,15 @@ const NewPost = ({ postList, setPostList }) => {
             onChange={(e) => setAuthor(e.target.value)}
           ></textarea>
         </p>
+        <p className={classes.actions}>
+          <button type="button" onClick={onCancel}>
+            Cancel
+          </button>
+          <button type="submit" onClick={submitHandler}>
+            Submit
+          </button>
+        </p>
       </form>
-      <div className={classes.actions}>
-        <button onClick={submitHandler}>Add new Post</button>
-      </div>
     </>
   );
 };
