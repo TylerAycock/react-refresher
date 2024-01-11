@@ -7,7 +7,7 @@ function App() {
   const [modalVisability, setModalVisability] = useState(false);
 
   const modalToggle = (e) => {
-    console.log(e.target);
+    console.log("modal toggle activated!");
     setModalVisability(!modalVisability);
   };
 

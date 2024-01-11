@@ -5,7 +5,7 @@ import Modal from "./Modal";
 import { useState } from "react";
 
 const PostsList = ({ modalVisability, modalToggle }) => {
-  const [postList, setPostList] = useState([
+  const [posts, setPosts] = useState([
     {
       author: "Tyler",
       body: "React.js is the best!",
@@ -16,16 +16,16 @@ const PostsList = ({ modalVisability, modalToggle }) => {
     },
   ]);
 
+  const addPostHandler = (postData) => {
+    setPosts([...posts, postData]);
+  };
+
   let modalContent;
 
   if (modalVisability) {
     modalContent = (
       <Modal onClose={modalToggle}>
-        <NewPost
-          postList={postList}
-          setPostList={setPostList}
-          onCancel={modalToggle}
-        />
+        <NewPost onAddPost={addPostHandler} onCancel={modalToggle} />
       </Modal>
     );
   }
@@ -33,7 +33,7 @@ const PostsList = ({ modalVisability, modalToggle }) => {
     <>
       {modalContent}
       <ul className={classes.post__list}>
-        {postList.map((post, index) => {
+        {posts.map((post, index) => {
           return (
             <Post
               author={post.author}

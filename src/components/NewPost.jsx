@@ -1,29 +1,23 @@
 import classes from "./NewPost.module.css";
 import { useState } from "react";
 
-const NewPost = ({ postList, setPostList, onCancel }) => {
+const NewPost = ({ onAddPost, onCancel }) => {
   const [author, setAuthor] = useState("");
   const [body, setBody] = useState("");
 
   const submitHandler = (e) => {
     e.preventDefault();
-    setPostList([
-      ...postList,
-      {
-        author: author,
-        body: body,
-      },
-    ]);
-    // console.log(postList);
-  };
-
-  const clickHandler = () => {
-    console.log("cancelbutton");
+    let postData = {
+      body: body,
+      author: author,
+    };
+    onAddPost(postData);
+    onCancel();
   };
 
   return (
     <>
-      <form className={classes.form}>
+      <form className={classes.form} onSubmit={submitHandler}>
         <p>
           <label htmlFor="body">Text</label>
           <textarea
@@ -41,14 +35,12 @@ const NewPost = ({ postList, setPostList, onCancel }) => {
             onChange={(e) => setAuthor(e.target.value)}
           ></textarea>
         </p>
-        <p className={classes.actions}>
+        <div className={classes.actions}>
           <button type="button" onClick={onCancel}>
             Cancel
           </button>
-          <button type="submit" onClick={submitHandler}>
-            Submit
-          </button>
-        </p>
+          <button type="submit">Submit</button>
+        </div>
       </form>
     </>
   );
