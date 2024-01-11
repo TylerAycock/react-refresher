@@ -5,19 +5,10 @@ import Modal from "./Modal";
 import { useState } from "react";
 
 const PostsList = ({ modalVisability, modalToggle }) => {
-  const [posts, setPosts] = useState([
-    {
-      author: "Tyler",
-      body: "React.js is the best!",
-    },
-    {
-      author: "Alex",
-      body: "This React.js course is a life save!",
-    },
-  ]);
+  const [posts, setPosts] = useState([]);
 
   const addPostHandler = (postData) => {
-    setPosts([...posts, postData]);
+    setPosts((existingPosts) => [...existingPosts, postData]);
   };
 
   let modalContent;
@@ -32,18 +23,19 @@ const PostsList = ({ modalVisability, modalToggle }) => {
   return (
     <>
       {modalContent}
-      <ul className={classes.post__list}>
-        {posts.map((post, index) => {
-          return (
-            <Post
-              author={post.author}
-              body={post.body}
-              key={index}
-              onCancel={modalToggle}
-            />
-          );
-        })}
-      </ul>
+      {posts.length > 0 && (
+        <ul className={classes.post__list}>
+          {posts.map((post, index) => {
+            return <Post post={post} key={index} />;
+          })}
+        </ul>
+      )}
+      {posts.length === 0 && (
+        <div className={classes.empty}>
+          <h2>There are no posts yet</h2>
+          <p>Start Adding some!</p>
+        </div>
+      )}
     </>
   );
 };
