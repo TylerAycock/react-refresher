@@ -1,3 +1,4 @@
+import Modal from "../components/Modal";
 import classes from "./NewPost.module.css";
 import { useState } from "react";
 
@@ -16,7 +17,7 @@ const NewPost = ({ onAddPost, onCancel }) => {
   };
 
   return (
-    <>
+    <Modal>
       <form className={classes.form} onSubmit={submitHandler}>
         <p>
           <label htmlFor="body">Text</label>
@@ -42,7 +43,7 @@ const NewPost = ({ onAddPost, onCancel }) => {
           <button type="submit">Submit</button>
         </div>
       </form>
-    </>
+    </Modal>
   );
 };
 

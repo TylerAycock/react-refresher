@@ -9,7 +9,8 @@
    justify-content: center;
 }
 
-.empty{
+.empty,
+.loading{
    text-align: center;
    color: white;
 }
