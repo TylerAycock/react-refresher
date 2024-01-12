@@ -30,7 +30,7 @@
     gap: .5rem;
 }
 
-.actions button{
+.actions button, .actions a{
     cursor: pointer;
     font: inherit;
     padding: .5rem 1.5rem;
@@ -38,14 +38,20 @@
     border-radius: 4px;
     background-color: #34036c;
     color: #e5d5f7;
+    text-decoration: none;
 }
 
 .actions button:hover{
     background-color: #23014a;
 }
 
-.actions button[type="button"]{
+.actions a:hover{
+    color: #23014a
+}
+
+.actions a{
     background-color: transparent;
+    text-decoration: none;
 }
 
 .actions button[type="button"]:hover{
